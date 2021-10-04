@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.herolist.R
 import com.example.herolist.databinding.FragmentMainScreenBinding
+import com.example.herolist.databinding.ListItemBinding
 
 class MainScreenFragment : Fragment() {
 
@@ -24,7 +25,8 @@ class MainScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMainScreenBinding.inflate(inflater)
+        //val binding = FragmentMainScreenBinding.inflate(inflater)
+        val binding = ListItemBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 

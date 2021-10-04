@@ -17,6 +17,15 @@ class MainScreenViewModel : ViewModel() {
     private val _response = MutableLiveData<String>()
     val response: LiveData<String>
         get() = _response
+    private val _property = MutableLiveData<HeroProperty>()
+    val property: LiveData<HeroProperty>
+        get() = _property
+    private val _status = MutableLiveData<String>()
+    val status: LiveData<String>
+        get() = _status
+
+
+
     init {
         getHeroesProperties()
     }
@@ -25,9 +34,12 @@ class MainScreenViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val listResult = HeroApi.retrofitService.getProperties()
-                _response.value = "Success: ${listResult.size} Mars properties retrieved"
+                _status.value = "Success: ${listResult.size} Mars properties retrieved"
+                if (listResult.size > 0) {
+                    _property.value = listResult[0]
+                }
             } catch (e: Exception) {
-                _response.value = "Failure: ${e.message}"
+                _status.value = "Failure: ${e.message}"
             }
         }
 
