@@ -15,20 +15,22 @@ class MainScreenFragment : Fragment() {
         fun newInstance() = MainScreenFragment()
     }
 
-    private lateinit var viewModel: MainScreenViewModel
+
+    private val viewModel: MainScreenViewModel by lazy {
+        ViewModelProvider(this).get(MainScreenViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentMainScreenBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainScreenViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+
 
 }
