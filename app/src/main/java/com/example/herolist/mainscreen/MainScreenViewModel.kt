@@ -4,7 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.herolist.network.HeroApi
+import com.example.herolist.network.HeroProperty
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,22 +22,15 @@ class MainScreenViewModel : ViewModel() {
     }
 
     private fun getHeroesProperties() {
-        //_response.value = "Set the Hero API Response here!"
-        HeroApi.retrofitService.getProperties().enqueue( object: Callback<String> {
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                Log.i("FAILURE","CALLED")
-                _response.value = "Failure: " + t.message
-                Log.i("FAILURE","${response.value}")
+        viewModelScope.launch {
+            try {
+                val listResult = HeroApi.retrofitService.getProperties()
+                _response.value = "Success: ${listResult.size} Mars properties retrieved"
+            } catch (e: Exception) {
+                _response.value = "Failure: ${e.message}"
             }
+        }
 
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-
-                _response.value = response.body()
-                Log.i("FAILURE1","${_response.value}")
-
-            }
-        })
-        Log.i("FAILURE","${_response.value}")
 
     }
 }
