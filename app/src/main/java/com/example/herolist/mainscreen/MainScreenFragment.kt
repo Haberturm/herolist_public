@@ -25,11 +25,11 @@ class MainScreenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //val binding = FragmentMainScreenBinding.inflate(inflater)
-        val binding = ListItemBinding.inflate(inflater)
+        val binding = FragmentMainScreenBinding.inflate(inflater)
+        //val binding = ListItemBinding.inflate(inflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
+        binding.heroList.adapter = RvAdapter()
         return binding.root
     }
 
