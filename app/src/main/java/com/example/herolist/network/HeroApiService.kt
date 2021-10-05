@@ -7,6 +7,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
+import retrofit2.http.Query
+
+enum class HeroApiFilter(val value: String) {
+    SHOW_RENT("rent"),
+    SHOW_BUY("buy"),
+    SHOW_ALL("all") }
 
 private const val BASE_URL =
     "https://mars.udacity.com/" //https://superheroapi.com/api/
@@ -22,7 +28,7 @@ private val retrofit = Retrofit.Builder()
 
 interface HeroApiService {
     @GET("realestate")
-    suspend fun getProperties(): List<HeroProperty>
+    suspend fun getProperties(@Query("filter") type: String): List<HeroProperty>
 }
 
 object HeroApi {

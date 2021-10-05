@@ -30,3 +30,4 @@ fun bindRecyclerView(recyclerView: RecyclerView,
     val adapter = recyclerView.adapter as RvAdapter
     adapter.submitList(data)
 }
+

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.herolist.databinding.ListItemBinding
 import com.example.herolist.network.HeroProperty
 
-class RvAdapter :
+class RvAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<HeroProperty, RvAdapter.HeroPropertyViewHolder>(DiffCallback) {
 
 
@@ -37,7 +37,13 @@ class RvAdapter :
 
     override fun onBindViewHolder(holder: HeroPropertyViewHolder, position: Int) {
         val heroProperty = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(heroProperty)
+        }
         holder.bind(heroProperty)
+    }
+    class OnClickListener(val clickListener: (marsProperty:HeroProperty) -> Unit) {
+        fun onClick(marsProperty:HeroProperty) = clickListener(marsProperty)
     }
 
 
