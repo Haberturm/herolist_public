@@ -1,6 +1,7 @@
 package com.example.herolist.network
 
 import android.os.Parcelable
+import com.example.herolist.R
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -25,4 +26,13 @@ data class Biography (
 	val firstAppearance : String,
 	val publisher : String?,
 	val alignment : String
-) : Parcelable
+) : Parcelable{
+
+	val publisherPic = when(publisher)
+	{
+		"Marvel Comics" -> R.drawable.marvel64
+		"Dark Horse Comics" -> R.drawable.dark_horse64
+		"DC Comics" -> R.drawable.dc64
+		else -> R.drawable.qeustion_mark
+	}
+}

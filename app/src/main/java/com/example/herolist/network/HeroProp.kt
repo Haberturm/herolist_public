@@ -2,6 +2,7 @@ package com.example.herolist.network
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.example.herolist.R
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
@@ -29,4 +30,9 @@ data class HeroProp (
 		val work : Work,
 		val connections : Connections,
 		val images : Images
-) : Parcelable
+) : Parcelable{
+
+
+
+
+}

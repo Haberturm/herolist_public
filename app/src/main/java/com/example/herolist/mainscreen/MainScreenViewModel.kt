@@ -44,13 +44,12 @@ class MainScreenViewModel : ViewModel() {
             try {
 
                 _properties.value = HeroApi.retrofitService.getProperties()
-
                 _response.value = "Success: Mars properties retrieved"
-                Log.i("SIZEE", "${_response.value}")
+
 
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
-                Log.i("SIZEE", "${_response.value}")
+
             }
         }
        // Log.i("SIZEE", "${properties.value!!.size}")

@@ -24,4 +24,17 @@ data class Powerstats (
 	val durability : Int,
 	val power : Int,
 	val combat : Int
-) : Parcelable
+) : Parcelable{
+	val intelligenceStr
+		get() = "• intelligence: $intelligence"
+	val strengthStr
+		get() = "• strength: $strength"
+	val speedStr
+		get() = "• speed: $speed"
+	val durabilityStr
+		get() = "• durability: $durability"
+	val powerStr
+		get() = "• power: $power"
+	val combatStr
+		get() = "• combat: $combat"
+}

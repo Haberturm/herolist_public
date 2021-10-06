@@ -9,50 +9,61 @@
             name="property"
             type="com.example.herolist.network.HeroProp" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        style="@style/MyCardViewStyle"
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
             >
-        <ImageView
-            android:id="@+id/hero_image"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:padding="2dp"
-            app:imageUrl="@{property.images.md}"
-            tools:src="@tools:sample/backgrounds/scenic"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="16dp"
-            />
+            <ImageView
+                android:id="@+id/hero_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{property.images.md}"
+                tools:src="@tools:sample/backgrounds/scenic" />
+            <TextView
+                android:id="@+id/hero_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/hero_image"
+                android:text="@{property.name}"
+                android:textSize="30sp"
+                tools:text="A-Bomb"
+                android:textColor="@color/text_color"/>
 
-        <TextView
-            android:id="@+id/person_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/hero_image"
-            android:text="Batman Batman"
-            android:textSize="30sp" />
+            <TextView
+                android:id="@+id/hero_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hero_nickname"
+                android:layout_toEndOf="@+id/hero_image"
+                android:text="@{property.biography.fullName}"
+                tools:text="Richard Milhouse Jones"
+                android:textColor="@color/text_color"
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/person_age"
-            android:layout_toEndOf="@+id/hero_image"
-            android:layout_below="@+id/person_name"
-            android:text="Bruce Wayne"
-            />
-        </RelativeLayout>>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:imageResource="@{property.biography.publisherPic}"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                 />
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
-
-
 </layout>

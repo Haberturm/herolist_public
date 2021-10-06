@@ -32,7 +32,7 @@ class RvAdapter(private val onClickListener: OnClickListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroPropViewHolder {
-        return HeroPropViewHolder(ListItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return HeroPropViewHolder(ListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: HeroPropViewHolder, position: Int) {
