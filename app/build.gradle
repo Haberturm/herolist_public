@@ -1,11 +1,15 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+
+
 }
 
 apply plugin: 'androidx.navigation.safeargs'
 
 apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlinx-serialization'
 
 //Parcelize
 apply plugin: 'com.android.application'
@@ -81,7 +85,8 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
     implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
 
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0'
+    implementation 'com.google.code.gson:gson:2.8.8'
 
 
 }

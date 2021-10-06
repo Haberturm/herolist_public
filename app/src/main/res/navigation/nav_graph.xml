@@ -19,6 +19,6 @@
         android:label="BioFragment" >
             <argument
                 android:name="selectedProperty"
-                app:argType="com.example.herolist.network.HeroProperty"/>
+                app:argType="com.example.herolist.network.HeroProp"/>
     </fragment>
 </navigation>

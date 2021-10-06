@@ -7,43 +7,43 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.herolist.databinding.ListItemBinding
-import com.example.herolist.network.HeroProperty
+import com.example.herolist.network.HeroProp
 
 class RvAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<HeroProperty, RvAdapter.HeroPropertyViewHolder>(DiffCallback) {
+    ListAdapter<HeroProp, RvAdapter.HeroPropViewHolder>(DiffCallback) {
 
 
-    class HeroPropertyViewHolder(private var binding: ListItemBinding):
+    class HeroPropViewHolder(private var binding: ListItemBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(marsProperty: HeroProperty) {
-            binding.property = marsProperty
+        fun bind(heroProperty: HeroProp) {
+            binding.property = heroProperty
             binding.executePendingBindings()
         }
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<HeroProperty>() {
-        override fun areItemsTheSame(oldItem: HeroProperty, newItem: HeroProperty): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<HeroProp>() {
+        override fun areItemsTheSame(oldItem: HeroProp, newItem: HeroProp): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: HeroProperty, newItem: HeroProperty): Boolean {
+        override fun areContentsTheSame(oldItem: HeroProp, newItem: HeroProp): Boolean {
             return oldItem.id == newItem.id
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroPropertyViewHolder {
-        return HeroPropertyViewHolder(ListItemBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroPropViewHolder {
+        return HeroPropViewHolder(ListItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun onBindViewHolder(holder: HeroPropertyViewHolder, position: Int) {
-        val heroProperty = getItem(position)
+    override fun onBindViewHolder(holder: HeroPropViewHolder, position: Int) {
+        val heroProp = getItem(position)
         holder.itemView.setOnClickListener {
-            onClickListener.onClick(heroProperty)
+            onClickListener.onClick(heroProp)
         }
-        holder.bind(heroProperty)
+        holder.bind(heroProp)
     }
-    class OnClickListener(val clickListener: (marsProperty:HeroProperty) -> Unit) {
-        fun onClick(marsProperty:HeroProperty) = clickListener(marsProperty)
+    class OnClickListener(val clickListener: (heroProperty:HeroProp) -> Unit) {
+        fun onClick(heroProperty:HeroProp) = clickListener(heroProperty)
     }
 
 

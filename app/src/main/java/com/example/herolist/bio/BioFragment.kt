@@ -15,8 +15,8 @@ class BioFragment : Fragment() {
         val application = requireNotNull(activity).application
         val binding = FragmentBioBinding.inflate(inflater)
         binding.lifecycleOwner = this
-        val heroProperty = BioFragmentArgs.fromBundle(requireArguments()).selectedProperty
-        val viewModelFactory = BioViewModelFactory(heroProperty,application)
+        val heroProp = BioFragmentArgs.fromBundle(requireArguments()).selectedProperty
+        val viewModelFactory = BioViewModelFactory(heroProp,application)
         binding.viewModel = ViewModelProvider(this, viewModelFactory).get(BioViewModel::class.java)
 
 

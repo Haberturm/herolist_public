@@ -15,7 +15,7 @@ enum class HeroApiFilter(val value: String) {
     SHOW_ALL("all") }
 
 private const val BASE_URL =
-    "https://mars.udacity.com/" //https://superheroapi.com/api/
+    "https://akabab.github.io/superhero-api/api/" //https://superheroapi.com/api/
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -27,8 +27,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface HeroApiService {
-    @GET("realestate")
-    suspend fun getProperties(@Query("filter") type: String): List<HeroProperty>
+    @GET("all.json")
+    suspend fun getProperties(): List<HeroProp>
 }
 
 object HeroApi {

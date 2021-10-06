@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
 
-//data class HeroProperty(
+//data class com.example.herolist.network.HeroProp(
 //    val id: String,
 //    val name:String,
 //    val full_name: String,

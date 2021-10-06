@@ -7,7 +7,7 @@
     <data>
         <variable
             name="property"
-            type="com.example.herolist.network.HeroProperty" />
+            type="com.example.herolist.network.HeroProp" />
     </data>
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -26,7 +26,7 @@
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:padding="2dp"
-            app:imageUrl="@{property.imgSrcUrl}"
+            app:imageUrl="@{property.images.md}"
             tools:src="@tools:sample/backgrounds/scenic"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"

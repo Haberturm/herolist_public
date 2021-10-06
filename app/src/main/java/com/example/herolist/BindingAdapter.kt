@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.herolist.mainscreen.RvAdapter
-import com.example.herolist.network.HeroProperty
+import com.example.herolist.network.HeroProp
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -26,7 +26,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView,
-                     data: List<HeroProperty>?) {
+                     data: List<HeroProp>?) {
     val adapter = recyclerView.adapter as RvAdapter
     adapter.submitList(data)
 }
