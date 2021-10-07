@@ -34,31 +34,63 @@ class MainScreenViewModel : ViewModel() {
 
 
     init {
-        getHeroesProperties()
-        _publishers.value= listOf("All","DC Comics","Marvel")
+        getHeroesProperties(HeroApiFilter.SHOW_ALL)
+        _publishers.value= listOf("All","DC Comics","Marvel", "Dark Horse", "Other")
     }
 
-    private fun getHeroesProperties() {
-        Log.i("SIZEE", "@@@@@@@@")
+    private fun getHeroesProperties(filter: HeroApiFilter) {
         viewModelScope.launch {
             try {
-
-                _properties.value = HeroApi.retrofitService.getProperties()
+                _properties.value = when(filter){
+                    HeroApiFilter.SHOW_MARVEL -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
+                    HeroApiFilter.SHOW_DC -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
+                    HeroApiFilter.SHOW_DARK_HORSE -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
+                    HeroApiFilter.SHOW_OTHER -> applyOtherFilter(HeroApi.retrofitService.getProperties())
+                    else -> HeroApi.retrofitService.getProperties()
+                }
                 _response.value = "Success: Mars properties retrieved"
-
-
             } catch (e: Exception) {
                 _response.value = "Failure: ${e.message}"
+                Log.i("responseerr", "${_response.value}")
 
             }
         }
-       // Log.i("SIZEE", "${properties.value!!.size}")
     }
 
-//    fun updateFilter(filter: HeroApiFilter) {
-//        getHeroesProperties()
-//    }
+    fun updateFilter(filter: HeroApiFilter) {
+        getHeroesProperties(filter)
+    }
 
+
+    private fun applyStudioFilter(lst:MutableList<HeroProp>, filter: HeroApiFilter):List<HeroProp>{
+        var i=0
+        while (i!=lst.size-1){
+            if (lst[i].biography.publisher!=filter.value){
+                lst.removeAt(i)
+                i--
+            }
+            i++
+        }
+        return lst.toList()
+    }
+
+    private fun applyOtherFilter(lst:MutableList<HeroProp>):List<HeroProp>{
+        val marvel = HeroApiFilter.SHOW_MARVEL.value
+        val dc = HeroApiFilter.SHOW_DC.value
+        val dh = HeroApiFilter.SHOW_DARK_HORSE.value
+        var i=0
+        while (i!=lst.size-1){
+            val item = lst[i].biography.publisher
+            if (    item == dh ||
+                    item == dc ||
+                    item == marvel){
+                lst.removeAt(i)
+                i--
+            }
+            i++
+        }
+        return lst.toList()
+    }
 
     fun displayPropertyDetails(heroProp: HeroProp) {
         _navigateToSelectedProperty.value = heroProp

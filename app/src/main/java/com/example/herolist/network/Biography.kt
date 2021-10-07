@@ -27,8 +27,8 @@ data class Biography (
 	val publisher : String?,
 	val alignment : String
 ) : Parcelable{
-
-	val publisherPic = when(publisher)
+	val publisherPic
+		get() = when(publisher)
 	{
 		"Marvel Comics" -> R.drawable.marvel64
 		"Dark Horse Comics" -> R.drawable.dark_horse64

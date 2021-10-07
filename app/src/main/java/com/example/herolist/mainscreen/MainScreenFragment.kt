@@ -65,13 +65,15 @@ class MainScreenFragment : Fragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                    viewModel.updateFilter(
-//                            when(s.toString()){
-//                                items[1] -> HeroApiFilter.SHOW_RENT
-//                                items[2] -> HeroApiFilter.SHOW_BUY
-//                                else -> HeroApiFilter.SHOW_ALL
-//                            }
-//                    )
+                    viewModel.updateFilter(
+                            when(s.toString()){
+                                items[1] -> HeroApiFilter.SHOW_DC
+                                items[2] -> HeroApiFilter.SHOW_MARVEL
+                                items[3] -> HeroApiFilter.SHOW_DARK_HORSE
+                                items[4] -> HeroApiFilter.SHOW_OTHER
+                                else -> HeroApiFilter.SHOW_ALL
+                            }
+                    )
                 }
 
                 override fun afterTextChanged(s: Editable?) {

@@ -10,8 +10,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 enum class HeroApiFilter(val value: String) {
-    SHOW_RENT("rent"),
-    SHOW_BUY("buy"),
+    SHOW_DC("DC Comics"),
+    SHOW_MARVEL("Marvel Comics"),
+    SHOW_DARK_HORSE("Dark Horse Comics"),
+    SHOW_OTHER("other"),
     SHOW_ALL("all") }
 
 private const val BASE_URL =
@@ -28,7 +30,7 @@ private val retrofit = Retrofit.Builder()
 
 interface HeroApiService {
     @GET("all.json")
-    suspend fun getProperties(): List<HeroProp>
+    suspend fun getProperties(): MutableList<HeroProp>
 }
 
 object HeroApi {
