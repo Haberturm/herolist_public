@@ -27,26 +27,29 @@ class MainScreenViewModel : ViewModel() {
     private val _publishers = MutableLiveData<List<String>>()
     val publishers:LiveData<List<String>>
         get() = _publishers
+    private val _currentPublisher = MutableLiveData<String>()
+    val currentPublisher:LiveData<String>
+        get() = _currentPublisher
 
     private val _navigateToSelectedProperty = MutableLiveData<HeroProp?>()
     val navigateToSelectedProperty: LiveData<HeroProp?>
         get() = _navigateToSelectedProperty
 
-
     init {
         getHeroesProperties(HeroApiFilter.SHOW_ALL)
-        _publishers.value= listOf("All","DC Comics","Marvel", "Dark Horse", "Other")
+        _publishers.value = listOf("All","DC Comics","Marvel", "Dark Horse", "Other")
+        _currentPublisher.value = publishers.value!![0]
     }
 
     private fun getHeroesProperties(filter: HeroApiFilter) {
         viewModelScope.launch {
             try {
                 _properties.value = when(filter){
-                    HeroApiFilter.SHOW_MARVEL -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
-                    HeroApiFilter.SHOW_DC -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
-                    HeroApiFilter.SHOW_DARK_HORSE -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
-                    HeroApiFilter.SHOW_OTHER -> applyOtherFilter(HeroApi.retrofitService.getProperties())
-                    else -> HeroApi.retrofitService.getProperties()
+                    HeroApiFilter.SHOW_MARVEL       -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
+                    HeroApiFilter.SHOW_DC           -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
+                    HeroApiFilter.SHOW_DARK_HORSE   -> applyStudioFilter(HeroApi.retrofitService.getProperties(),filter)
+                    HeroApiFilter.SHOW_OTHER        -> applyOtherFilter(HeroApi.retrofitService.getProperties())
+                    else                            -> HeroApi.retrofitService.getProperties()
                 }
                 _response.value = "Success: Mars properties retrieved"
             } catch (e: Exception) {
@@ -60,7 +63,6 @@ class MainScreenViewModel : ViewModel() {
     fun updateFilter(filter: HeroApiFilter) {
         getHeroesProperties(filter)
     }
-
 
     private fun applyStudioFilter(lst:MutableList<HeroProp>, filter: HeroApiFilter):List<HeroProp>{
         var i=0
@@ -97,6 +99,10 @@ class MainScreenViewModel : ViewModel() {
     }
     fun displayPropertyDetailsComplete() {
         _navigateToSelectedProperty.value = null
+    }
+
+    fun onPublisherChanged(s:String){
+        _currentPublisher.value=s
     }
 
 }

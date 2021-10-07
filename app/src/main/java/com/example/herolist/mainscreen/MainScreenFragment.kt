@@ -59,12 +59,13 @@ class MainScreenFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(),R.layout.drop_down_item, items!!)
         (binding.menu.editText as? AutoCompleteTextView)?.apply {
             setAdapter(adapter)
-            setText(items[0],false)
+            setText(viewModel.currentPublisher.value,false)
             addTextChangedListener(object : TextWatcher{
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    viewModel.onPublisherChanged(s.toString())
                     viewModel.updateFilter(
                             when(s.toString()){
                                 items[1] -> HeroApiFilter.SHOW_DC
@@ -75,18 +76,11 @@ class MainScreenFragment : Fragment() {
                             }
                     )
                 }
-
                 override fun afterTextChanged(s: Editable?) {
                 }
 
             })
         }
-
-  //      (binding.menu.editText as? AutoCompleteTextView)?.
-        
-
-
-
     }
 
 
