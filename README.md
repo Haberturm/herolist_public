@@ -1,4 +1,4 @@
-private version of #herolist
+private version of herolist
 
 Решил выполнить все пункты тз и сделать приватный репозиторий. 
 
